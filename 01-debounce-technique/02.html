@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Debounce Technique</title>
+</head>
+<body>
+    <input type="text"/>
+    <button>Click</button>
+    <ul class="results"></ul>
+    <script>
+
+        const input = document.querySelector('input');
+        const boton = document.querySelector('button');
+        const outputList = document.querySelector('.results');
+        const debouncedResults = debounce(printResults, 300);
+        
+        input.addEventListener('keyup', (e) => {
+            debouncedResults(e.target.value);
+        });
+
+        function printResults(findText) {
+            let list = palabras
+            .filter( (x) => x.match(`.*${findText}.*`))
+            .map( (x) => `<li>${x}</li>`)
+            .join('');
+
+            outputList.innerHTML = list;
+            
+        }
+
+        function debounce(debouncedFunction, time) {
+            let timeoutId;
+            return function() {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+                const context = this;
+                const args =  arguments;
+                timeoutId = setTimeout( () => {
+                    debouncedFunction.apply(context, args);
+                }, time);
+            }
+        }
+
+
+        let palabras = [
+            'Carlos',
+            'Alberto',
+            'Angulo',
+            'Mendoza',
+            'Medellín',
+            'Colombia'
+        ]
+    </script>
+</body>
+</html>
