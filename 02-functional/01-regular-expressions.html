@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Regular Expressions</title>
+</head>
+<body>
+
+    <h1>Regular Expressions</h1>
+    <p>You can declare regular expressions by using the RegExp constructor or just with the double slash (//) notation.</p>
+    <pre>
+        var reg1 = RegExp("a");
+        var reg2 = /a/;
+    </pre>
+    <ul>
+        <li>The . character can represent any character.</li>
+        <li>To find ranges of characters, you can use the brackets "[]" notation
+            <pre>
+                var text = "Hola Mundo";
+                text.match(/[a-z]/);
+                // Finds the first character on the string that matches the a-z range
+                // ouput: o
+            </pre>
+        </li>
+        <li>You can mix the ranges like [a-zA-Z0-9]</li>
+        <li>
+            <h4>Sumarized</h4>
+            <ul>
+                <li>Word: <b>\w</b> is [a-zA-Z0-9], excluding the ñ and acuted characters</li>
+                <li>Decimal:<b>\d</b> is [0-9]</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Controllers</h4>
+            <ul>
+                <li><b>i</b> Insensitive</li>
+                <li><b>g</b> All</li>
+                <li><b>m</b> Multiline</li>
+                <li><b>+</b> Repetitive structures</li>
+                <li><b>?</b> Matches any character not equal to the left character declared</li>
+                <li><b>*</b> Repetitive structures</li>
+                <li><b>{2}</b> Number of times that the character should appear sequentially</li>
+            </ul>
+            <pre>
+                var text = "HolA MUndo \n Qué tal?";
+                
+                text.match(/[aeiou]|é/gi);
+                // ouput: ["o", "A", "U", "o", "u", "a", "é"]
+                
+                text.match(/[aeiou]é/gi);
+                // ouput: ["ué"]
+
+                var text = "HolA MUndo \n Qué taal?";
+                text.match(/a+/gi)
+                // output: ["A", "aa"];
+
+                var text = "Hoola";
+                text.match(/o?/g)
+                // output: ["", "o", "o" "", ""];
+
+                var text = "Hoola";
+                text.match(/o*/g)
+                // output: ["", "oo", "", ""];
+
+                var text = "Hoola o Mundo";
+                text.match(/o{2,}/g)
+                // output: ["oo", "oo"];
+            </pre>
+        </li>
+    </ul>
+    <script>
+        var reg1 = RegExp("a");
+        var reg2 = /a/;
+
+        var text = 'Hola mundo';
+
+        var arr = text.match(/ /);
+        console.log(arr);
+        
+
+    </script>
+</body>
+</html>
