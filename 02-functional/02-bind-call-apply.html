@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bind - Call - Apply</title>
+</head>
+<body>
+    <h1>Bind</h1>
+    <p>Allows to pointing the scope of any function to a selected Object</p>
+    <pre>
+            var coche = {
+                color: 'red',
+                brand: 'BMW',
+                printe: function() {
+                    var output = this.brand + " " + this.color;
+                    return output;
+                }
+            }
+    
+            console.log( 'Normal object:',  coche.printe());
+    
+            var logCoche = function( arg1, arg2 ) {
+                console.log("Binded", this.printe());
+                console.log("Arguments", arg1, arg2);
+            }
+    
+            var logModelCoche = logCoche.bind(coche)
+            
+            logModelCoche('Carlos', 'Angulo');
+    </pre>
+
+    <script>
+
+        // Normal way with prototyping
+
+        function Car() {
+            this.color= 'white';
+            this.brand= 'Mazda';
+            this.imprimir = function() {
+                console.error('>>>> Carlos <<<<');
+                return this
+            }
+        }
+
+        Car.prototype.printe = function (){
+            var output= this.brand + ' ' + this.color;
+            return output;
+        }
+
+        var carro = new Car();
+
+        console.log('Prototype: ', carro.printe());
+        console.log( '------------------------------' );
+        console.log( carro.imprimir() );
+        console.log( '------------------------------' );
+
+    </script>
+
+    <script>
+        
+        // Binding 
+
+        var coche = {
+            color: 'red',
+            brand: 'BMW',
+            printe: function() {
+                var output = this.brand + " " + this.color;
+                return output;
+            }
+        }
+
+        console.log( 'Normal object:',  coche.printe());
+
+        var logCoche = function( arg1, arg2 ) {
+            console.log("=====================");
+            console.log("logCoche", arg1, arg2 , this.printe());
+            console.log("=====================");
+        }
+
+        // Bind
+        logCoche.bind(coche)('Binding', 'Case 1');
+
+        // Variation
+        var logModelCoche = logCoche.bind(coche)
+        logModelCoche('Binding', 'Case 2');
+
+    </script>
+
+    <script>
+
+        // Call
+        logCoche.call(coche, 'Call', 'Case 1');
+        
+        // Variation
+        logModelCoche2 = logCoche;
+        logModelCoche2.call(coche, 'Call', 'Case 2');
+
+    </script>
+
+    <script>
+
+        // Apply
+        logCoche.apply(coche, ['Apply', 'Case 1']);
+        
+        // Variation
+        logModelCoche3 = logCoche;
+        logModelCoche3.apply(coche, ["Apply", "Case 2"]);
+
+        // Funciones prestadas
+        console.log( '------------------------------' );
+        console.log( carro.imprimir.apply(coche) );
+        console.log( '------------------------------' );
+
+    </script>
+</body>
+</html>
