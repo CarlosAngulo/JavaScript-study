@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Subject() {
+            console.log('a')
+            this.observers = [];
+        }
+
+        Subject.prototype.subscribe = function(obs) {
+            console.log(obs);
+            this.observers.push(obs);
+        }
+
+        Subject.prototype.unsubscribe = function(obs) {
+            this.observers = this.observrers.filter( item => item !== obs);
+        }
+
+        Subject.prototype.notify = function(data) {
+            this.observers.forEach(obs => {
+                console.log(obs, data);
+                obs.notify(data)
+            });
+        }
+
+
+        function Observer() {
+            this.notify = function(data) {
+                console.log(data)
+            }
+        }
+
+        const publisher = new Subject();
+
+        const observer1 = new Observer();
+        const observer2 = new Observer();
+
+    </script>
+</body>
+</html>
