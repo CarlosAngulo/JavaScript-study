@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const users = [
+            { id: 1, name: 'Carlos', prof_id: 1 },
+            { id: 2, name: 'Pedro', prof_id: 1 },
+            { id: 3, name: 'Juan', prof_id: 2 },
+        ];
+
+        const profs = {
+            1: 'programmer',
+            2: 'designer',
+        }
+
+        function getUsers(callback) {
+            setTimeout(() => {
+                callback(null, users)
+            }, 200);
+        }
+
+        function getUser(id, callback) {
+            setTimeout(() => {
+                callback(null, users.filter((user)=> user.id === id)[0])
+            }, 200)
+        }
+
+        function getUser2(id) {
+            return users.filter((user)=>id === user.id)[0]
+        }
+
+        function getProfession(id, callback) {
+            setTimeout(()=>{
+                callback(null, profs[id]);
+            }, 200)
+        }
+
+        getUsers((err, users) => console.log(users));
+
+        getUser(2, (err, user) => console.log(user));
+        
+        console.log('--', getUser2(2));
+
+        getProfession(1, (err, prof) => console.log(prof) );
+
+    </script>
+</body>
+</html>
