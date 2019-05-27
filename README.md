@@ -11,4 +11,20 @@ Memory Heap
 - You can cause a memory leak
 
 Call Stack
-- When you execute the instructions
+- When you execute the instructions, they are going to be stored in a stack (the last in store is the first one to be executed).
+- You can cause a stack overflow with a recursion e.g
+
+## Environment
+
+  Javascript Engine
+  - Memory Heap
+  - Call Stack
+
+  Ouside
+  - Web API
+    - DOM
+    - AJAX (XMLHttpRequest)
+    - Timeout
+    - Fetch
+  - Callback Queue
+  - Event Loop
