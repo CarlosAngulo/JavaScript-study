@@ -28,3 +28,8 @@ Call Stack
     - Fetch
   - Callback Queue
   - Event Loop
+
+# Promises
+A promise is an object that may produce a single value some time in the future, either a resolved value, or a reason that it's not resolved (rejected).
+
+Maybe in one of three possible states: fulfilled, rejected or pending.
