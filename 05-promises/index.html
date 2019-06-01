@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promises</title>
+</head>
+<body>
+    <script>
+        let promise = new Promise((resolve, reject) => {
+            if (true) {
+                resolve('Stuff worked');
+            } else {
+                reject ('Error, it broke');
+            }
+        });
+
+        promise
+            .then(result => result + '!')
+            .then(result2 => {
+                console.log(result2 + '!');
+            })
+    </script>
+
+    <script>
+        let promise2 = new Promise((resolve, reject) => {
+            if (true) {
+                resolve('Stuff worked');
+            } else {
+                reject ('Error, it broke');
+            }
+        });
+
+        promise2
+            .then(result => result + '!')
+            .then(result2 => {
+                throw('paila');
+            })
+            .catch(err => err)
+            .then(result3 => console.log(result3))
+    </script>
+</body>
+</html>
