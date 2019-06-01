@@ -32,4 +32,7 @@ Call Stack
 # Promises
 A promise is an object that may produce a single value some time in the future, either a resolved value, or a reason that it's not resolved (rejected).
 
-Maybe in one of three possible states: fulfilled, rejected or pending.
+Maybe in one of three possible states: 
+-Fulfilled, 
+-Rejected 
+-Pending.
